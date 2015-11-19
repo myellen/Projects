@@ -6,12 +6,14 @@ using namespace std;
 
 int main()
 {
-	cout << "Hello World!" << endl;
 	/*
+	cout << "Hello World!" << endl;
+	
 	Matrix test(4, 4);
 	test(1, 2) = 106.15;
 	test(1, 2) *= .5;
 	test(0, 0) = 8;
+	
 	cout << test(1, 2) << endl;
 	cout << test << endl;
 	Matrix test2 = (test*.5);
@@ -47,8 +49,33 @@ int main()
 	cout << detTest << endl;
 	cout << "det :" << detTest.determinant() << endl;
 
-	detTest.setRow(2, 2*detTest.getRow(0) + detTest.getRow(2));
-	cout << detTest << endl;
+	//detTest.setRow(2, 2*detTest.getRow(0) + detTest.getRow(2));
+	//cout << detTest << endl;
+	/*
+	Matrix lhm(2, 3);
 
+	lhm(0, 0) = 1;
+	lhm(0, 1) = 2;
+	lhm(0, 2) = -3;
+	lhm(1, 0) = 4;
+	lhm(1, 1) = -1;
+	lhm(1, 2) = 2;
+	cout << lhm << endl;
+
+	Matrix rhm(3, 2);
+	rhm(0, 0) = 1;
+	rhm(0, 1) = 2;
+	rhm(1, 0) = -3;
+	rhm(1, 1) = -1;
+	rhm(2, 0) = -2;
+	rhm(2, 1) = 0;
+	cout << rhm << endl;
+
+	cout << lhm*rhm << endl;
+	*/
+	//cout << detTest*Matrix::IdentityMatrix(4) << endl;
+	Matrix inverse = detTest.inverse();
+	cout << inverse << endl;
+	cout << detTest * inverse << endl;
 	return 0;
 }
