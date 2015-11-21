@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <iostream>
 #include "Matrix.h"
+#include <vector>
+#include "DataCollector.h"
 
 using namespace std;
 
@@ -48,7 +50,7 @@ int main()
 
 	cout << detTest << endl;
 	cout << "det :" << detTest.determinant() << endl;
-
+	
 	//detTest.setRow(2, 2*detTest.getRow(0) + detTest.getRow(2));
 	//cout << detTest << endl;
 	/*
@@ -77,5 +79,23 @@ int main()
 	Matrix inverse = detTest.inverse();
 	cout << inverse << endl;
 	cout << detTest * inverse << endl;
+
+	DataCollector dc;
+	vector<string> assetNames;
+	Matrix priceMatrix = dc.readFromText("file", assetNames);
+
+	cout << "main method" << endl;
+	cout << priceMatrix << endl;
+
+	for (unsigned int i = 0; i < assetNames.size(); i++)
+		cout << assetNames[i] << endl;
+
+	while (priceMatrix.numRows() != priceMatrix.numColumns())
+		priceMatrix = priceMatrix.removeRow(priceMatrix.numRows()-1);
+
+	cout << priceMatrix.determinant() << endl;
+	Matrix inverse2 = priceMatrix.inverse();
+	cout << inverse2 << endl;
+	cout << priceMatrix * inverse2 << endl;
 	return 0;
 }

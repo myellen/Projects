@@ -142,11 +142,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="DataCollector.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Matrix.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DataCollector.h" />
     <ClInclude Include="Matrix.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="P.txt" />
+    <Text Include="Q.txt" />
+    <Text Include="Stocks.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
