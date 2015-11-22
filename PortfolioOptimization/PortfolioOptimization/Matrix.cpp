@@ -121,18 +121,17 @@ Matrix Matrix::inverse()
 	{
 		if (tmp(i, i) != 0)
 		{
-			for (unsigned int j = 0; j < rows; j++)
-			{
-				if (j == i) continue;
-				double scale;
-				if (tmp(i, i) > 0) scale = -1 * tmp(j, i) / tmp(i, i);
-				else scale = tmp(j, i) / tmp(i, i);
-				tmp.setRow(j, tmp.getRow(j) + scale*tmp.getRow(i));
-				inv.setRow(j, inv.getRow(j) + scale*inv.getRow(i));
-			}
 			double scale = 1 / tmp(i, i);
 			tmp.setRow(i, scale*tmp.getRow(i));
 			inv.setRow(i, scale*inv.getRow(i));
+			for (unsigned int j = 0; j < rows; j++)
+			{
+				if (j == i) continue;
+				scale = -1 * tmp(j, i) / tmp(i, i);
+				tmp.setRow(j, tmp.getRow(j) + scale*tmp.getRow(i));
+				inv.setRow(j, inv.getRow(j) + scale*inv.getRow(i));
+			}
+			
 		}
 
 		//cout << "tmp" << endl;
