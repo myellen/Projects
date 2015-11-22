@@ -6,6 +6,7 @@ using namespace std;
 class Matrix
 {
 public:
+	Matrix();
 	Matrix(unsigned int rows, unsigned int cols);
 	~Matrix();
 	Matrix(const Matrix& m);              

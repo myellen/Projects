@@ -3,19 +3,20 @@
 #include "Matrix.h"
 #include <vector>
 #include "DataCollector.h"
+#include "MeanVariancePortfolio.h"
 
 using namespace std;
 
-int main()
+int runMatrixTests()
 {
 	/*
 	cout << "Hello World!" << endl;
-	
+
 	Matrix test(4, 4);
 	test(1, 2) = 106.15;
 	test(1, 2) *= .5;
 	test(0, 0) = 8;
-	
+
 	cout << test(1, 2) << endl;
 	cout << test << endl;
 	Matrix test2 = (test*.5);
@@ -50,7 +51,7 @@ int main()
 
 	cout << detTest << endl;
 	cout << "det :" << detTest.determinant() << endl;
-	
+
 	//detTest.setRow(2, 2*detTest.getRow(0) + detTest.getRow(2));
 	//cout << detTest << endl;
 	/*
@@ -79,23 +80,24 @@ int main()
 	Matrix inverse = detTest.inverse();
 	cout << inverse << endl;
 	cout << detTest * inverse << endl;
+	return 0;
+}
 
+int main()
+{
 	DataCollector dc;
 	vector<string> assetNames;
 	Matrix priceMatrix = dc.readFromText("file", assetNames);
 
-	cout << "main method" << endl;
 	cout << priceMatrix << endl;
 
 	for (unsigned int i = 0; i < assetNames.size(); i++)
 		cout << assetNames[i] << endl;
 
-	while (priceMatrix.numRows() != priceMatrix.numColumns())
-		priceMatrix = priceMatrix.removeRow(priceMatrix.numRows()-1);
+	MeanVariancePortfolio mvp(priceMatrix);
 
-	cout << priceMatrix.determinant() << endl;
-	Matrix inverse2 = priceMatrix.inverse();
-	cout << inverse2 << endl;
-	cout << priceMatrix * inverse2 << endl;
+	cout << mvp.getPortfolioWeights(0.05) << endl;
+	cout << mvp.getGobalMinimumVariancePortfolioWeights() << endl;
+
 	return 0;
 }

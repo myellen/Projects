@@ -3,6 +3,14 @@
 #include <iostream>
 
 
+Matrix::Matrix()
+{
+	this->rows = 1;
+	this->cols = 1;
+
+	//this->data = new double[1]();
+}
+
 Matrix::Matrix(unsigned int rows, unsigned int cols)
 {
 	if (rows == 0 || cols == 0)
@@ -58,7 +66,7 @@ Matrix Matrix::OneVector(unsigned int n)
 Matrix Matrix::transpose()
 {
 	Matrix temp(this->cols, this->rows);
-	cout << "temp :" << temp << endl;
+	//cout << "temp :" << temp << endl;
 	for (unsigned int i = 0; i < temp.rows; ++i)
 	{
 		for (unsigned int j = 0; j < temp.cols; ++j)
@@ -66,7 +74,7 @@ Matrix Matrix::transpose()
 			temp(i, j) = (*this)(j, i);
 		}
 	}
-	cout << "done" << endl;
+	//cout << "done" << endl;
 	return temp;
 }
 
@@ -127,7 +135,7 @@ Matrix Matrix::inverse()
 			for (unsigned int j = 0; j < rows; j++)
 			{
 				if (j == i) continue;
-				scale = -1 * tmp(j, i) / tmp(i, i);
+				scale = -1 * tmp(j, i);
 				tmp.setRow(j, tmp.getRow(j) + scale*tmp.getRow(i));
 				inv.setRow(j, inv.getRow(j) + scale*inv.getRow(i));
 			}

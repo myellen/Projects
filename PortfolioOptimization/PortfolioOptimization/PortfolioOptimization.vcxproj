@@ -145,10 +145,12 @@
     <ClCompile Include="DataCollector.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Matrix.cpp" />
+    <ClCompile Include="MeanVariancePortfolio.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DataCollector.h" />
     <ClInclude Include="Matrix.h" />
+    <ClInclude Include="MeanVariancePortfolio.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="P.txt" />
