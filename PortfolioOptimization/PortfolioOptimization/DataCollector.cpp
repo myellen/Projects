@@ -15,6 +15,28 @@ DataCollector::~DataCollector()
 {
 }
 
+void countLines(string filename, unsigned int &rows, unsigned int &columns)
+{
+	ifstream infile; //input file stream object
+	infile.open(filename);
+	if (!infile) {
+		cerr << "Bad input! Can't open " << filename << endl;
+		exit(1);
+	}
+	string line, token;
+	rows = 0;
+	columns = 0;
+	getline(infile, line, '\n');
+	stringstream ss(line);
+	while (getline(ss, token, ','))
+		columns++;
+	rows++;
+	while (getline(infile, line, '\n'))
+	{
+		rows++;
+	}
+}
+
 void countStuff(string filename, unsigned int &numAssets, unsigned int &numDates)
 {
 	numAssets = 0;
@@ -88,4 +110,55 @@ Matrix DataCollector::readFromText(string filename, vector<string> &assetNames)
 	}
 	//cout << priceMatrix << endl;
 	return priceMatrix;
+}
+
+Matrix DataCollector::readPMatrixFromText(string filename)
+{
+	unsigned int rows, columns;
+	countLines(filename, rows, columns);
+	ifstream infile; //input file stream object
+	infile.open(filename);
+	if (!infile) {
+		cerr << "Bad input! Can't open " << filename << endl;
+		exit(1);
+	}
+	Matrix P(rows, columns);
+	unsigned int i = 0;
+	unsigned int j = 0;
+	string line;
+	string token;
+	while (!infile.eof())
+	{
+		getline(infile, line, '\n');
+		stringstream ss(line);
+		j = 0;
+		while (getline(ss, token, ','))
+		{
+			P(i, j) = stod(token);
+			j++;
+			//cout << price << "\t";
+		}
+		i++;
+	}
+	return P;
+}
+
+Matrix DataCollector::readQMatrixFromText(string filename)
+{
+	unsigned int rows, columns;
+	countLines(filename, rows, columns);
+	ifstream infile; //input file stream object
+	infile.open(filename);
+	if (!infile) {
+		cerr << "Bad input! Can't open " << filename << endl;
+		exit(1);
+	}
+	Matrix Q(rows, 1);
+	unsigned int i = 0;
+	string line;
+	while (getline(infile, line, '\n'))
+	{
+		Q(i++, 0) = stod(line);
+	}
+	return Q;
 }

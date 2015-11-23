@@ -12,5 +12,7 @@ public:
 	~DataCollector();
 
 	Matrix readFromText(string filename, vector<string> &assetNames);
+	Matrix readPMatrixFromText(string filename);
+	Matrix readQMatrixFromText(string filename);
 };
 
