@@ -61,7 +61,7 @@ void countStuff(string filename, unsigned int &numAssets, unsigned int &numDates
 
 Matrix DataCollector::readFromText(string filename, vector<string> &assetNames)
 {
-	filename = "Stocks.txt";
+	//filename = "Stocks.txt";
 
 	unsigned int numAssets, numDates;
 

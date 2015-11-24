@@ -4,7 +4,7 @@
 class BlackLittermanPortfolio
 {
 public:
-	BlackLittermanPortfolio(Matrix priceMatrix, Matrix Q, Matrix P, double tau);
+	BlackLittermanPortfolio(Matrix priceMatrix, Matrix Q, Matrix P, double tau, double riskAversion);
 	~BlackLittermanPortfolio();
 
 	Matrix getPortfolioWeights(); // returns row vector

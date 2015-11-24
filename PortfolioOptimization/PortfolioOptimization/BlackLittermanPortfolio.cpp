@@ -2,7 +2,7 @@
 
 
 
-BlackLittermanPortfolio::BlackLittermanPortfolio(Matrix priceMatrix, Matrix Q, Matrix P, double tau)
+BlackLittermanPortfolio::BlackLittermanPortfolio(Matrix priceMatrix, Matrix Q, Matrix P, double tau, double riskAversion)
 {
 	Matrix returnMatrix(priceMatrix.numRows() - 1, priceMatrix.numColumns());
 	for (unsigned int assetIndex = 0; assetIndex < returnMatrix.numColumns(); ++assetIndex)
@@ -44,7 +44,7 @@ BlackLittermanPortfolio::BlackLittermanPortfolio(Matrix priceMatrix, Matrix Q, M
 	Matrix Omega = this->P * covMatrix * this->P.transpose();
 	this->Omega = Omega;
 
-	this->riskAversion = 1;
+	this->riskAversion = riskAversion;
 	this->tau = tau;
 	this->Pi = riskAversion * this->covMatrix * this->getGobalMinimumVariancePortfolioWeights().transpose();
 }
